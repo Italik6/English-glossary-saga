@@ -3,16 +3,24 @@ import ReactDOM from "react-dom";
 import "./style.css";
 import App from "./App";
 import { Provider } from "react-redux";
-import { createStore, compose } from "redux";
+import { createStore, compose, applyMiddleware } from "redux";
 import reducers from "./reducers";
+import createSagaMiddleware from "redux-saga";
+import { watchTest } from "../src/sagas/saga";
 
-const createStoreWithMiddleware = compose(
-  // Add redux devtools for chrome browser
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-)(createStore);
+const sagaMiddleware = createSagaMiddleware();
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(
+  reducers,
+  composeEnhancers(applyMiddleware(sagaMiddleware))
+);
+
+sagaMiddleware.run(watchTest);
 
 ReactDOM.render(
-  <Provider store={createStoreWithMiddleware(reducers)}>
+  <Provider store={store}>
     <App />
   </Provider>,
   document.getElementById("root")

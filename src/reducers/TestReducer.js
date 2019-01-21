@@ -1,4 +1,4 @@
-import { TEST } from "../actions/types";
+import { TEST_ASYNC } from "../actions/types";
 
 const initialState = {
   test: 1
@@ -6,7 +6,7 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case TEST:
+    case TEST_ASYNC:
       return {
         test: state.test + 1
       };
