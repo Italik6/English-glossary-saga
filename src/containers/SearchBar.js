@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { testAction } from "../actions/TestAction";
+import { searchWordAction } from "../actions/SearchWord";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
@@ -7,7 +7,6 @@ class SearchBar extends Component {
   constructor(props) {
     super(props);
     this.state = { term: "" };
-    this.props.testAction();
   }
 
   onInputChange = event => {
@@ -19,8 +18,8 @@ class SearchBar extends Component {
     this.setState({ term: "" });
   };
 
-  onTest = e => {
-    this.props.testAction(this.state.term);
+  onSearch = e => {
+    this.props.searchWordAction(this.state.term);
   };
 
   render() {
@@ -37,7 +36,7 @@ class SearchBar extends Component {
             <button
               type="submit"
               className="btn btn-secondary"
-              onClick={this.onTest}
+              onClick={this.onSearch}
             >
               Search
             </button>
@@ -54,7 +53,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ testAction }, dispatch);
+  return bindActionCreators({ searchWordAction }, dispatch);
 };
 
 export default connect(

@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import { createStore, compose, applyMiddleware } from "redux";
 import reducers from "./reducers";
 import createSagaMiddleware from "redux-saga";
-import { watchTest } from "../src/sagas/saga";
+import { watchSearchWord } from "../src/sagas/saga";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -17,7 +17,7 @@ const store = createStore(
   composeEnhancers(applyMiddleware(sagaMiddleware))
 );
 
-sagaMiddleware.run(watchTest);
+sagaMiddleware.run(watchSearchWord);
 
 ReactDOM.render(
   <Provider store={store}>

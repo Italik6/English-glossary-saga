@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import TestReducer from "./TestReducer";
+import WordReducer from "./WordReducer";
 
 const rootReducer = combineReducers({
-  test: TestReducer
+  wordData: WordReducer
 });
 
 export default rootReducer;

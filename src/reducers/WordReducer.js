@@ -1,15 +1,15 @@
-import { TEST_ASYNC } from "../actions/types";
+import { SEARCH_WORD_SUCCESS } from "../actions/types";
 
 const initialState = {
-  test: {}
+  wordData: {}
 };
 
 export default function(state = initialState, action) {
   console.log("reducer", action.payload);
   switch (action.type) {
-    case TEST_ASYNC:
+    case SEARCH_WORD_SUCCESS:
       return {
-        test: action.payload
+        wordData: action.payload.data
       };
     default:
       return state;

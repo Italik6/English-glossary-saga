@@ -1,2 +1,2 @@
-export const TEST_ASYNC = "TEST_ASYNC";
-export const TEST = "TEST";
+export const SEARCH_WORD_SUCCESS = "SEARCH_WORD_SUCCESS";
+export const SEARCH_WORD = "SEARCH_WORD";
