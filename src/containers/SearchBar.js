@@ -20,7 +20,7 @@ class SearchBar extends Component {
   };
 
   onTest = e => {
-    this.props.testAction();
+    this.props.testAction(this.state.term);
   };
 
   render() {
@@ -43,7 +43,7 @@ class SearchBar extends Component {
             </button>
           </span>
         </form>
-        <p>{this.props.test.test}</p>
+        {/* <p>{this.props.test.test}</p> */}
       </div>
     );
   }

@@ -1,10 +1,18 @@
-import { takeEvery, put, delay } from "redux-saga/effects";
+import { takeLatest, put, call } from "redux-saga/effects";
+import { TEST_ASYNC, TEST } from "../actions/types";
+import * as api from "../api/api";
 
-function* testAsync() {
-  yield delay(2000);
-  yield put({ type: "TEST_ASYNC" });
+function* testAsync({ payload }) {
+  console.log("saga", payload);
+  try {
+    const result = yield call(api.searchWord, { word: payload });
+    console.log("result", result);
+    yield put({ type: TEST_ASYNC, payload: result });
+  } catch (e) {
+    console.log("error", e);
+  }
 }
 
 export function* watchTest() {
-  yield takeEvery("TEST", testAsync);
+  yield takeLatest(TEST, testAsync);
 }
