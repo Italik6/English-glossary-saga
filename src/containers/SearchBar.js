@@ -23,6 +23,7 @@ class SearchBar extends Component {
   };
 
   render() {
+    console.log("props", this.props.wordData);
     return (
       <div>
         <form onSubmit={this.onFormSubmit} className="input-group">
@@ -42,14 +43,13 @@ class SearchBar extends Component {
             </button>
           </span>
         </form>
-        {/* <p>{this.props.test.test}</p> */}
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  test: state.test
+  wordData: state.wordData
 });
 
 const mapDispatchToProps = dispatch => {
