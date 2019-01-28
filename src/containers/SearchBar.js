@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { searchWordAction } from "../actions/SearchWord";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import Definitions from "../components/definitions";
-import Alert from "../components/alert";
 
 class SearchBar extends Component {
   constructor(props) {
@@ -28,7 +26,7 @@ class SearchBar extends Component {
     console.log("props error", this.props.isError.isError);
 
     return (
-      <div>
+      <div className="m-t-2">
         <form onSubmit={this.onFormSubmit} className="input-group">
           <input
             placeholder="Search a word"
@@ -46,10 +44,6 @@ class SearchBar extends Component {
             </button>
           </span>
         </form>
-        {this.props.isError.isError ? <Alert /> : null}
-        {this.props.wordData.results ? (
-          <Definitions definitions={this.props.wordData.results} />
-        ) : null}
       </div>
     );
   }

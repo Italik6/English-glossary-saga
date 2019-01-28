@@ -2,11 +2,13 @@ import React from "react";
 
 export default props => {
   return (
-    <div>
-      <p>Definitions:</p>
-      <ul>
+    <div className="m-t-2">
+      <h4>Definitions:</h4>
+      <ul className="list-group">
         {props.definitions.map(e => (
-          <li key={e.definition}>{e.definition}</li>
+          <li className="list-group-item" key={e.definition}>
+            - {e.definition}
+          </li>
         ))}
       </ul>
     </div>
