@@ -1,6 +1,9 @@
 import { takeLatest, put, call } from "redux-saga/effects";
 import { SEARCH_WORD } from "../actions/types";
-import {searchWordActionSuccess} from "../actions/SearchWord"
+import {
+  searchWordActionSuccess,
+  searchWordActionError
+} from "../actions/SearchWord";
 import * as api from "../api/api";
 
 function* searchWord({ payload }) {
@@ -13,7 +16,11 @@ function* searchWord({ payload }) {
       })
     );
   } catch (e) {
-    console.log("error", e);
+    yield put(
+      searchWordActionError({
+        isError: true
+      })
+    );
   }
 }
 

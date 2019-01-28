@@ -3,6 +3,7 @@ import { searchWordAction } from "../actions/SearchWord";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import Definitions from "../components/definitions";
+import Alert from "../components/alert";
 
 class SearchBar extends Component {
   constructor(props) {
@@ -24,10 +25,8 @@ class SearchBar extends Component {
   };
 
   render() {
-    if (true){
-      console.log("props", this.props.wordData.results);
-    }
-    
+    console.log("props error", this.props.isError.isError);
+
     return (
       <div>
         <form onSubmit={this.onFormSubmit} className="input-group">
@@ -47,16 +46,18 @@ class SearchBar extends Component {
             </button>
           </span>
         </form>
+        {this.props.isError.isError ? <Alert /> : null}
         {this.props.wordData.results ? (
-            <Definitions definitions={this.props.wordData.results} />
-          ) : null}
+          <Definitions definitions={this.props.wordData.results} />
+        ) : null}
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  wordData: state.wordData
+  wordData: state.wordData,
+  isError: state.isError
 });
 
 const mapDispatchToProps = dispatch => {
