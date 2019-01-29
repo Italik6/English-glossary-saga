@@ -3,11 +3,11 @@ import React from "react";
 export default props => {
   return (
     <div className="m-t-2">
-      <h5>Definitions:</h5>
+      <h5>Rhymes:</h5>
       <ul className="list-group">
-        {props.definitions.map(e => (
-          <li className="list-group-item" key={e.definition}>
-            - {e.definition}
+        {props.rhymes.map(rhyme => (
+          <li className="list-group-item" key={rhyme}>
+            - {rhyme}
           </li>
         ))}
       </ul>

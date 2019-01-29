@@ -23,8 +23,6 @@ class SearchBar extends Component {
   };
 
   render() {
-    console.log("props error", this.props.isError.isError);
-
     return (
       <div className="m-t-2">
         <form onSubmit={this.onFormSubmit} className="input-group">
