@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Alert from "../components/alert";
+import Button from "../components/button";
 import Definitions from "../components/definitions";
 import Rhymes from "../components/rhymes";
 import { searchRhymesAction } from "../actions/SearchRhymes";
@@ -12,28 +13,38 @@ class WordData extends Component {
     this.props.searchRhymesAction(this.props.wordData.word);
   };
 
+  definitionsComponent = () => {
+    const { wordData } = this.props;
+    if (wordData.results) {
+      return <Definitions definitions={wordData.results} />;
+    }
+  };
+
+  rhymesComponent = () => {
+    const { rhymes } = this.props;
+    if (rhymes.all) {
+      return <Rhymes rhymes={rhymes.all} />;
+    }
+  };
+
+  buttonComponent = () => {
+    const { rhymes, wordData } = this.props;
+    if (!rhymes.all && wordData.results) {
+      return <Button onClick={this.onRhymesSubmit} />;
+    }
+  };
+
   render() {
-    if (this.props.isError.isError) {
+    const { isError, wordData } = this.props;
+    if (isError.isError) {
       return <Alert />;
     } else {
       return (
         <div className="m-t-2">
-          <h3>{this.props.wordData.word}</h3>
-          {this.props.wordData.results ? (
-            <Definitions definitions={this.props.wordData.results} />
-          ) : null}
-          {this.props.rhymes.all === undefined &&
-          this.props.wordData.results ? (
-            <button
-              className="btn btn-success m-t-2"
-              onClick={this.onRhymesSubmit}
-            >
-              Rhymes
-            </button>
-          ) : null}
-          {this.props.rhymes.all !== undefined ? (
-            <Rhymes rhymes={this.props.rhymes.all} />
-          ) : null}
+          <h3>{wordData.word}</h3>
+          {this.definitionsComponent()}
+          {this.buttonComponent()}
+          {this.rhymesComponent()}
         </div>
       );
     }
