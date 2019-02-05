@@ -3,6 +3,7 @@ import Alert from "../components/alert";
 import Button from "../components/button";
 import Definitions from "../components/definitions";
 import Rhymes from "../components/rhymes";
+import Loader from "../components/loader";
 import { searchRhymesAction } from "../actions/SearchRhymes";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -35,9 +36,12 @@ class WordData extends Component {
   };
 
   render() {
+    console.log(this.props);
     const { isError, wordData } = this.props;
     if (isError.isError) {
       return <Alert />;
+    } else if (true) {
+      return <Loader />;
     } else {
       return (
         <div className="m-t-2">

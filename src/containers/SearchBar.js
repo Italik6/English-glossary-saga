@@ -18,7 +18,7 @@ class SearchBar extends Component {
     this.setState({ term: "" });
   };
 
-  onSearch = e => {
+  onSearch = () => {
     this.props.searchWordAction(this.state.term);
   };
 
