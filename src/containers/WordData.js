@@ -37,10 +37,10 @@ class WordData extends Component {
 
   render() {
     console.log(this.props);
-    const { isError, wordData } = this.props;
-    if (isError.isError) {
+    const { wordData } = this.props;
+    if (wordData.isError) {
       return <Alert />;
-    } else if (true) {
+    } else if (wordData.isFetching) {
       return <Loader />;
     } else {
       return (
