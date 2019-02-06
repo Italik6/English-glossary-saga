@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { advancedSearchAction } from "../actions/AdvancedSearch";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import AdvancedResults from "../components/advancedResults";
+import Loader from "../components/loader";
+import List from "../components/list";
 
 class AdvancedSearch extends Component {
   constructor(props) {
@@ -74,7 +75,9 @@ class AdvancedSearch extends Component {
   advancedResults = () => {
     const { advancedSearch } = this.props;
     if (advancedSearch.advancedSearch) {
-      return <AdvancedResults advancedResults={advancedSearch} />;
+      return <List title={"Results"} items={advancedSearch.advancedSearch}/>;
+    } else if (advancedSearch.isFetching) {
+      return <Loader />;
     }
   };
 
@@ -89,13 +92,13 @@ class AdvancedSearch extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  advancedSearch: state.advancedSearch
-});
+function mapStateToProps({ advancedSearch, isFetching }) {
+  return { advancedSearch, isFetching };
+}
 
-const mapDispatchToProps = dispatch => {
+function mapDispatchToProps(dispatch) {
   return bindActionCreators({ advancedSearchAction }, dispatch);
-};
+}
 
 export default connect(
   mapStateToProps,

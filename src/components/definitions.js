@@ -5,9 +5,9 @@ export default props => {
     <div className="m-t-2">
       <h5>Definitions:</h5>
       <ul className="list-group">
-        {props.definitions.map(e => (
-          <li className="list-group-item" key={e.definition}>
-            - {e.definition}
+        {props.items.map(item => (
+          <li className="list-group-item" key={item.definition}>
+            - {item.definition}
           </li>
         ))}
       </ul>

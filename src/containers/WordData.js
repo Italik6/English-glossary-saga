@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Alert from "../components/alert";
 import Button from "../components/button";
+import List from "../components/list";
 import Definitions from "../components/definitions";
-import Rhymes from "../components/rhymes";
 import Loader from "../components/loader";
 import { searchRhymesAction } from "../actions/SearchRhymes";
 import { bindActionCreators } from "redux";
@@ -17,14 +17,14 @@ class WordData extends Component {
   definitionsComponent = () => {
     const { wordData } = this.props;
     if (wordData.results) {
-      return <Definitions definitions={wordData.results} />;
+      return <Definitions title={"Definitions"} items={wordData.results} />;
     }
   };
 
   rhymesComponent = () => {
     const { rhymes } = this.props;
     if (rhymes.all) {
-      return <Rhymes rhymes={rhymes.all} />;
+      return <List title={"Rhymes"} items={rhymes.all} />;
     }
   };
 
