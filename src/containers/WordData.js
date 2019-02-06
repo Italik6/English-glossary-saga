@@ -36,7 +36,6 @@ class WordData extends Component {
   };
 
   render() {
-    console.log(this.props);
     const { wordData } = this.props;
     if (wordData.isError) {
       return <Alert />;
@@ -44,7 +43,7 @@ class WordData extends Component {
       return <Loader />;
     } else {
       return (
-        <div className="m-t-2">
+        <div className="m-t-2 m-b-2">
           <h3>{wordData.word}</h3>
           {this.definitionsComponent()}
           {this.buttonComponent()}
