@@ -59,7 +59,11 @@ class AdvancedSearch extends Component {
             className="form-control"
             onChange={this.onInputChange}
           />
-          <Button title={"Search"} onClick={this.onAdvancedSearch} />
+          <Button
+            title={"Search"}
+            className={"btn btn-success m-t-2"}
+            onClick={this.onAdvancedSearch}
+          />
         </form>
       );
     } else {

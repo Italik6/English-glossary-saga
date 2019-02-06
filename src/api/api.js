@@ -23,8 +23,9 @@ export const searchRhymes = ({ payload }) => {
 };
 
 export const advancedSearch = ({ payload }) => {
-const {lettersAmount, firstLetter} = payload;
-  const url = `${ROOT_URL}?letterPattern=^${firstLetter}.{${lettersAmount-1}}$`;
+  const { lettersAmount, firstLetter } = payload;
+  const url = `${ROOT_URL}?letterPattern=^${firstLetter}.{${lettersAmount -
+    1}}$`;
   return axios.get(url, {
     headers: {
       "X-Mashape-Key": API_KEY

@@ -31,7 +31,13 @@ class WordData extends Component {
   buttonComponent = () => {
     const { rhymes, wordData } = this.props;
     if (!rhymes.all && wordData.results) {
-      return <Button title={"Rhymes"} onClick={this.onRhymesSubmit} />;
+      return (
+        <Button
+          title={"Rhymes"}
+          className={"btn btn-success m-t-2"}
+          onClick={this.onRhymesSubmit}
+        />
+      );
     }
   };
 
