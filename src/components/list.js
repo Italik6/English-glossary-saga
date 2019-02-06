@@ -1,7 +1,6 @@
 import React from "react";
 
 export default props => {
-    
   return (
     <div className="m-t-2">
       <h5>{props.title}</h5>

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Alert from "../components/alert";
 import Button from "../components/button";
 import List from "../components/list";
-import Definitions from "../components/definitions";
 import Loader from "../components/loader";
 import { searchRhymesAction } from "../actions/SearchRhymes";
 import { bindActionCreators } from "redux";
@@ -17,7 +16,8 @@ class WordData extends Component {
   definitionsComponent = () => {
     const { wordData } = this.props;
     if (wordData.results) {
-      return <Definitions title={"Definitions"} items={wordData.results} />;
+      const items = wordData.results.map(a => a.definition);
+      return <List title={"Definitions"} items={items} />;
     }
   };
 
@@ -31,7 +31,7 @@ class WordData extends Component {
   buttonComponent = () => {
     const { rhymes, wordData } = this.props;
     if (!rhymes.all && wordData.results) {
-      return <Button onClick={this.onRhymesSubmit} />;
+      return <Button title={"Rhymes"} onClick={this.onRhymesSubmit} />;
     }
   };
 

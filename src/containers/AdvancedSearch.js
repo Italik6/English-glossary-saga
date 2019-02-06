@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import Loader from "../components/loader";
 import List from "../components/list";
+import Button from "../components/button";
 
 class AdvancedSearch extends Component {
   constructor(props) {
@@ -58,13 +59,7 @@ class AdvancedSearch extends Component {
             className="form-control"
             onChange={this.onInputChange}
           />
-          <button
-            type="submit"
-            className="btn btn-secondary"
-            onClick={this.onAdvancedSearch}
-          >
-            Search
-          </button>
+          <Button title={"Search"} onClick={this.onAdvancedSearch} />
         </form>
       );
     } else {
@@ -75,7 +70,7 @@ class AdvancedSearch extends Component {
   advancedResults = () => {
     const { advancedSearch } = this.props;
     if (advancedSearch.advancedSearch) {
-      return <List title={"Results"} items={advancedSearch.advancedSearch}/>;
+      return <List title={"Results"} items={advancedSearch.advancedSearch} />;
     } else if (advancedSearch.isFetching) {
       return <Loader />;
     }
