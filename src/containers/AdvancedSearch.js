@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { advancedSearchAction } from "../actions/AdvancedSearch";
+import { searchWordAction } from "../actions/SearchWord";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import Loader from "../components/loader";
-import List from "../components/list";
+import InteractiveList from "../components/interactiveList";
 import Button from "../components/button";
 import Alert from "../components/alert";
 
@@ -40,6 +41,10 @@ class AdvancedSearch extends Component {
       lettersAmount: 2,
       firstLetter: ""
     }));
+  };
+
+  onClickItem = item => {
+    this.props.searchWordAction(item);
   };
 
   formComponent = () => {
@@ -83,7 +88,13 @@ class AdvancedSearch extends Component {
       advancedSearch.advancedSearch.length > 0
     ) {
       console.log(advancedSearch.advancedSearch.length);
-      return <List title={"Results"} items={advancedSearch.advancedSearch} />;
+      return (
+        <InteractiveList
+          title={"Results"}
+          items={advancedSearch.advancedSearch}
+          onClick={item => this.onClickItem(item)}
+        />
+      );
     } else if (advancedSearch.isFetching) {
       return <Loader />;
     } else if (
@@ -112,7 +123,10 @@ function mapStateToProps({ advancedSearch, isFetching }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ advancedSearchAction }, dispatch);
+  return bindActionCreators(
+    { advancedSearchAction, searchWordAction },
+    dispatch
+  );
 }
 
 export default connect(
