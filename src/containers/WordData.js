@@ -44,7 +44,7 @@ class WordData extends Component {
   render() {
     const { wordData } = this.props;
     if (wordData.isError) {
-      return <Alert />;
+      return <Alert alertText={"Sorry, your word has not been found."} />;
     } else if (wordData.isFetching) {
       return <Loader />;
     } else {

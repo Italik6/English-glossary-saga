@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import Loader from "../components/loader";
 import List from "../components/list";
 import Button from "../components/button";
+import Alert from "../components/alert";
 
 class AdvancedSearch extends Component {
   constructor(props) {
@@ -55,6 +56,7 @@ class AdvancedSearch extends Component {
             <option value="3">3</option>
             <option value="4">4</option>
             <option value="5">5</option>
+            <option value="6">6</option>
           </select>
           <p className="form-label">Starting letter</p>
           <input
@@ -71,17 +73,24 @@ class AdvancedSearch extends Component {
           />
         </form>
       );
-    } else {
-      return null;
     }
   };
 
   advancedResults = () => {
     const { advancedSearch } = this.props;
-    if (advancedSearch.advancedSearch) {
+    if (
+      advancedSearch.advancedSearch &&
+      advancedSearch.advancedSearch.length > 0
+    ) {
+      console.log(advancedSearch.advancedSearch.length);
       return <List title={"Results"} items={advancedSearch.advancedSearch} />;
     } else if (advancedSearch.isFetching) {
       return <Loader />;
+    } else if (
+      advancedSearch.advancedSearch &&
+      advancedSearch.advancedSearch.length === 0
+    ) {
+      return <Alert alertText={"Sorry, no results for your search."} />;
     }
   };
 
@@ -89,7 +98,7 @@ class AdvancedSearch extends Component {
     return (
       <div className="m-t-2">
         <p onClick={this.showOptionClick} className="link-text">
-          More search options
+          Advanced search options
         </p>
         {this.formComponent()}
         {this.advancedResults()}
