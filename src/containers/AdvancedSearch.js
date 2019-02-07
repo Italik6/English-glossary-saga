@@ -22,6 +22,7 @@ class AdvancedSearch extends Component {
   };
 
   onAdvancedSearch = () => {
+    this.setState({ open: false });
     this.props.advancedSearchAction(
       this.state.lettersAmount,
       this.state.firstLetter
@@ -34,7 +35,9 @@ class AdvancedSearch extends Component {
 
   showOptionClick = () => {
     this.setState(prevState => ({
-      open: !prevState.open
+      open: !prevState.open,
+      lettersAmount: 2,
+      firstLetter: ""
     }));
   };
 
@@ -42,16 +45,18 @@ class AdvancedSearch extends Component {
     if (this.state.open === true) {
       return (
         <form onSubmit={this.onFormSubmit} className="input-group">
+          <p className="form-label">Number of letters</p>
           <select
             value={this.state.lettersAmount}
             onChange={this.onSelectChange}
-            className="form-control"
+            className="form-control m-b-2"
           >
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
             <option value="5">5</option>
           </select>
+          <p className="form-label">Starting letter</p>
           <input
             maxLength="1"
             placeholder="First letter"
@@ -83,7 +88,9 @@ class AdvancedSearch extends Component {
   render() {
     return (
       <div className="m-t-2">
-        <p onClick={this.showOptionClick}>More options</p>
+        <p onClick={this.showOptionClick} className="link-text">
+          More search options
+        </p>
         {this.formComponent()}
         {this.advancedResults()}
       </div>

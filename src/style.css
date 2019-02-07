@@ -5,3 +5,16 @@
 .m-b-2 {
     margin-bottom: 20px;
 }
+
+.link-text {
+    cursor: pointer;
+    text-decoration: underline;
+    font-style: italic;
+    font-size: 12px;
+    color: blue;
+}
+
+.form-label {
+    font-size: 13px;
+    margin-bottom: 0px;
+}
