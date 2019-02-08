@@ -35,7 +35,10 @@ class WordData extends Component {
 
   rhymesComponent = () => {
     const { rhymes } = this.props;
-    if (rhymes.all) {
+    const emptyResultsObject =
+      Object.entries(rhymes).length === 0 && rhymes.constructor === Object;
+    if (rhymes.all && rhymes.all.length > 0) {
+      console.log(rhymes.all.length);
       return (
         <InteractiveList
           title={"Rhymes"}
@@ -43,6 +46,10 @@ class WordData extends Component {
           onClick={item => this.onClickItem(item)}
         />
       );
+    } else if (rhymes.isFetching) {
+      return <Loader />;
+    } else if (emptyResultsObject) {
+      return <Alert alertText={"Sorry, no results for your search."} />;
     }
   };
 

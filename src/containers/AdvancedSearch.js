@@ -7,6 +7,7 @@ import Loader from "../components/loader";
 import InteractiveList from "../components/interactiveList";
 import Button from "../components/button";
 import Alert from "../components/alert";
+import Form from "../components/form";
 
 class AdvancedSearch extends Component {
   constructor(props) {
@@ -48,20 +49,19 @@ class AdvancedSearch extends Component {
   };
 
   formComponent = () => {
+    const selectArray = [2, 3, 4, 5, 6];
     if (this.state.open === true) {
       return (
-        <form onSubmit={this.onFormSubmit} className="input-group">
+        <Form onClick={this.onFormSubmit}>
           <p className="form-label">Number of letters</p>
           <select
             value={this.state.lettersAmount}
             onChange={this.onSelectChange}
             className="form-control m-b-2"
           >
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
+            {selectArray.map(e => (
+              <option value={e}>{e}</option>
+            ))}
           </select>
           <p className="form-label">Starting letter</p>
           <input
@@ -76,7 +76,7 @@ class AdvancedSearch extends Component {
             className={"btn btn-success m-t-2"}
             onClick={this.onAdvancedSearch}
           />
-        </form>
+        </Form>
       );
     }
   };

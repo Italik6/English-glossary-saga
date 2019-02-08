@@ -1,28 +1,28 @@
 .m-t-2 {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .m-b-2 {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .link-text {
-    cursor: pointer;
-    text-decoration: underline;
-    font-style: italic;
-    font-size: 12px;
-    color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+  font-style: italic;
+  font-size: 12px;
+  color: blue;
 }
 
 .form-label {
-    font-size: 13px;
-    margin-bottom: 0px;
+  font-size: 13px;
+  margin-bottom: 0px;
 }
 
 .interactive-item {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .interactive-item:hover {
-    background-color: #ddd;
+  background-color: #ddd;
 }

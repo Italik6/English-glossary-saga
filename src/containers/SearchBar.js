@@ -3,6 +3,7 @@ import { searchWordAction } from "../actions/SearchWord";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import Button from "../components/button";
+import Form from "../components/form";
 
 class SearchBar extends Component {
   constructor(props) {
@@ -26,7 +27,7 @@ class SearchBar extends Component {
   render() {
     return (
       <div className="m-t-2">
-        <form onSubmit={this.onFormSubmit} className="input-group">
+        <Form onClick={this.onFormSubmit}>
           <input
             placeholder="Search a word"
             value={this.state.term}
@@ -40,7 +41,7 @@ class SearchBar extends Component {
               onClick={this.onSearch}
             />
           </span>
-        </form>
+        </Form>
       </div>
     );
   }
