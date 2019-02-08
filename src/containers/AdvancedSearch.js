@@ -18,21 +18,17 @@ class AdvancedSearch extends Component {
     this.setState({ lettersAmount: event.target.value });
   };
 
+  onInputChange = event => {
+    this.setState({ firstLetter: event.target.value });
+  };
+
+  onClickItem = item => {
+    this.props.searchWordAction(item);
+  };
+
   onFormSubmit = event => {
     event.preventDefault();
     this.setState({ lettersAmount: "", firstLetter: "" });
-  };
-
-  onAdvancedSearch = () => {
-    this.setState({ open: false });
-    this.props.advancedSearchAction(
-      this.state.lettersAmount,
-      this.state.firstLetter
-    );
-  };
-
-  onInputChange = event => {
-    this.setState({ firstLetter: event.target.value });
   };
 
   showOptionClick = () => {
@@ -43,8 +39,12 @@ class AdvancedSearch extends Component {
     }));
   };
 
-  onClickItem = item => {
-    this.props.searchWordAction(item);
+  onAdvancedSearch = () => {
+    this.setState({ open: false });
+    this.props.advancedSearchAction(
+      this.state.lettersAmount,
+      this.state.firstLetter
+    );
   };
 
   formComponent = () => {
@@ -83,24 +83,19 @@ class AdvancedSearch extends Component {
 
   advancedResults = () => {
     const { advancedSearch } = this.props;
-    if (
-      advancedSearch.advancedSearch &&
-      advancedSearch.advancedSearch.length > 0
-    ) {
-      console.log(advancedSearch.advancedSearch.length);
+    const results = advancedSearch.advancedSearch;
+
+    if (results && results.length > 0) {
       return (
         <InteractiveList
           title={"Results"}
-          items={advancedSearch.advancedSearch}
+          items={results}
           onClick={item => this.onClickItem(item)}
         />
       );
     } else if (advancedSearch.isFetching) {
       return <Loader />;
-    } else if (
-      advancedSearch.advancedSearch &&
-      advancedSearch.advancedSearch.length === 0
-    ) {
+    } else if (results && results.length === 0) {
       return <Alert alertText={"Sorry, no results for your search."} />;
     }
   };
